@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="login" id="login-area">
+        <form id="login-form">
+            <span class="title">
+                Login
+            </span>
+            <div class="div-input" data-validate="Username required">
+                <span class="label">Username</span>
+                <input class="input-form" id=id type="text" name="id" placeholder="Type your username">
+            </div>
+
+            <div class="div-input" data-validate="Token is required">
+                <span class="label">Token</span>
+                <input class="input-form" id=token type="text" name="token" placeholder="Type your token">
+            </div>
+
+            <div class="container-btn">
+                <button class="form-btn" onclick="checkToken()" type="button">
+                    Login
+                </button>
+            </div>
+
+            <div class="container-btn">
+                <button class="form-btn" onclick="joinRoom()" type="button">
+                    Join Room
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="index.js"></script>
+
+
+</body>
+
+</html>

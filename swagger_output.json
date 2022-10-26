@@ -1,0 +1,1568 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.1.0",
+    "title": "REST API",
+    "description": "Documentation automatically generated for <b>Manao chat app</b>."
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "login",
+      "description": "login management"
+    },
+    {
+      "name": "users",
+      "description": "users management"
+    },
+    {
+      "name": "rooms",
+      "description": "rooms management"
+    },
+    {
+      "name": "members",
+      "description": "members management"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/login/{userId}/{token}": {
+      "get": {
+        "tags": [
+          "login"
+        ],
+        "summary": "",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/users/otherUser/{roomId}/{userId}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get a user's informations by its id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Other user of 1on1 room retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving other user of 1on1 room"
+          }
+        }
+      }
+    },
+    "/users/admin/{userId}/{roomId}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get the last message from all the user's rooms",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is admin of the room"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User is not admin"
+          },
+          "500": {
+            "description": "Error while determining if user is admin"
+          }
+        }
+      }
+    },
+    "/users/lastMessage/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get the last message from all the user's rooms",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Last message from all rooms retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving last message from all rooms"
+          }
+        }
+      }
+    },
+    "/users/room/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get the last message from all the user's rooms",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All users in the room retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving users in the room"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get all users of the app",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All users retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving users"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create a user with a name",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while creating user"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get a user's informations by its id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving user"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Delete a specific user by its id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while deleting user"
+          }
+        }
+      }
+    },
+    "/rooms/deleteMessage": {
+      "put": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Change the type of a specific message in a room by its id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "messageId": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message deleted with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while deleting message"
+          }
+        }
+      }
+    },
+    "/rooms/modifyName": {
+      "put": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Modify the name of a room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomId": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Name was changed"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while changing group room name"
+          }
+        }
+      }
+    },
+    "/rooms/generateURL": {
+      "put": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Generate the URL of the room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomId": {
+                  "example": "any"
+                },
+                "date": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "URL created with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while creating the URL"
+          }
+        }
+      }
+    },
+    "/rooms/update": {
+      "delete": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Delete messages once the GDPR conservation period is over",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "duration": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message permanently deleted with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while deleting messages from database"
+          }
+        }
+      }
+    },
+    "/rooms/kickUser": {
+      "delete": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Kick a user from a specific room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomId": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                },
+                "adminId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User kicked with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while kicking user in group room"
+          }
+        }
+      }
+    },
+    "/rooms/leaveRoom": {
+      "delete": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Leave a group chat",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomId": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User left room with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while leaving group room"
+          }
+        }
+      }
+    },
+    "/rooms/search/{name}": {
+      "get": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Get a specific room by its name",
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rooms containing regex found"
+          },
+          "400": {
+            "description": "No name was given for the search"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while looking for rooms"
+          }
+        }
+      }
+    },
+    "/rooms/userId/{userId}": {
+      "get": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Get the X last conversations",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rooms of user found with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while looking for rooms"
+          }
+        }
+      }
+    },
+    "/rooms/{roomId}": {
+      "get": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Get info about a specific room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Room found"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "No room found with this id"
+          }
+        }
+      }
+    },
+    "/rooms/message/{messageId}": {
+      "get": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Get a specific message with its id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "messageId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message found with id"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Unable to find the message"
+          }
+        }
+      }
+    },
+    "/rooms/messages/{roomId}": {
+      "get": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Get the last messages from a specific room by its id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Messages in the room found"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving the messages in the room"
+          }
+        }
+      }
+    },
+    "/rooms/lastMessage/{roomId}": {
+      "get": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Get last message sent of a room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Last message found"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while looking for last message"
+          }
+        }
+      }
+    },
+    "/rooms/member/{userId}/{roomId}": {
+      "get": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Get all messages of a member in a room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Message sent by member found"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while finding messages"
+          }
+        }
+      }
+    },
+    "/rooms/sendMessage": {
+      "post": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Post a message in a specific room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "example": "any"
+                },
+                "roomId": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                },
+                "tagIds": {
+                  "example": "any"
+                },
+                "parentId": {
+                  "example": "any"
+                },
+                "url": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Post created with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while creating post"
+          }
+        }
+      }
+    },
+    "/rooms/initiateGroup": {
+      "post": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Create a group chat conversation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "adminId": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Group room created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while creating group room"
+          }
+        }
+      }
+    },
+    "/rooms/initiate1On1": {
+      "post": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Create a 1 on 1 conversation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "creatorId": {
+                  "example": "any"
+                },
+                "invitedId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "1on1 room created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while creating 1on1 room"
+          }
+        }
+      }
+    },
+    "/rooms/join/{url}": {
+      "post": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Join a room with an url",
+        "description": "",
+        "parameters": [
+          {
+            "name": "url",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Room joined with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while joining group room"
+          }
+        }
+      }
+    },
+    "/rooms/sendNotification": {
+      "post": {
+        "tags": [
+          "rooms"
+        ],
+        "summary": "Send notification to the list of users concerned",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Notifications sent to concerned users"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while sending notifications to concerned users"
+          }
+        }
+      }
+    },
+    "/members/": {
+      "get": {
+        "tags": [
+          "members"
+        ],
+        "summary": "Get all members of the chat room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All members retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving all members"
+          }
+        }
+      }
+    },
+    "/members/userId/{id}": {
+      "get": {
+        "tags": [
+          "members"
+        ],
+        "summary": "Get the list of rooms where you can find the user",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All rooms of user retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving all rooms of user"
+          }
+        }
+      }
+    },
+    "/members/roomId/{roomId}": {
+      "get": {
+        "tags": [
+          "members"
+        ],
+        "summary": "Get the list of users in a specific room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All users in room retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving all users in room"
+          }
+        }
+      }
+    },
+    "/members/{roomId}/{userId}": {
+      "get": {
+        "tags": [
+          "members"
+        ],
+        "summary": "Get member object of the current user in the room",
+        "description": "",
+        "parameters": [
+          {
+            "name": "roomId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member retrieved with success"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error while retrieving member"
+          }
+        }
+      }
+    },
+    "/members/updateNotification": {
+      "put": {
+        "tags": [
+          "members"
+        ],
+        "summary": "Update the status to get notifications or not",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomId": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                },
+                "notification": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification status for the room has been changed"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error on changing notification status"
+          }
+        }
+      }
+    },
+    "/members/read": {
+      "put": {
+        "tags": [
+          "members"
+        ],
+        "summary": "Put the number of notifications to 0",
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "roomId": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Number of notifications of the user for a single room has been changed"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Error on setting notification status"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "28dcc46ffe144376ab7dd9c606c92d63"
+        },
+        "token": {
+          "type": "string",
+          "example": "15468245b7631245182a4579854301586"
+        },
+        "name": {
+          "type": "string",
+          "example": "Juan Doe"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-02-26T16:37:48.244Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-02-27T52:40:45.232Z"
+        }
+      },
+      "required": [
+        "_id",
+        "token"
+      ]
+    },
+    "Room": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "33efeb1e16ea40a1ab59ac4870c493e0"
+        },
+        "type": {
+          "type": "string",
+          "example": "1on1"
+        },
+        "adminId": {
+          "type": "string",
+          "example": "128dcc46ffe144376ab7dd9c606c92d63"
+        },
+        "status": {
+          "type": "string",
+          "example": "active"
+        },
+        "name": {
+          "type": "string",
+          "example": "Projet PING-Manao"
+        },
+        "key": {
+          "type": "string",
+          "example": "1a5d2e5648bfd4e298ebcadf452e6a32"
+        },
+        "url": {
+          "type": "string",
+          "example": "localhost:8080/join/xxxxxxx"
+        },
+        "urlMaxDate": {
+          "type": "string",
+          "example": "2022-01-10T05:10:10.099Z"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-02-26T16:37:48.244Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-02-27T52:40:45.232Z"
+        }
+      },
+      "required": [
+        "_id",
+        "type",
+        "adminId"
+      ]
+    },
+    "Member": {
+      "type": "object",
+      "properties": {
+        "_userId": {
+          "$ref": "#/definitions/User"
+        },
+        "roomId": {
+          "$ref": "#/definitions/Room"
+        },
+        "role": {
+          "type": "string",
+          "example": "admin"
+        },
+        "notifications": {
+          "type": "boolean",
+          "example": true
+        },
+        "numberNotifications": {
+          "type": "number",
+          "example": 15
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-02-26T16:37:48.244Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-02-27T52:40:45.232Z"
+        }
+      },
+      "required": [
+        "_userId",
+        "roomId"
+      ]
+    },
+    "Message": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "6b2a34cd20734e0aba518f5833dc8881"
+        },
+        "type": {
+          "type": "string",
+          "example": "-1 : Message supprimé, 0 : Message utilisateur, 1 : Message bot (join/quit), 2 : URL S3 AWS"
+        },
+        "userId": {
+          "type": "string",
+          "example": "e2eeb6d5bd3b45cf858d04d630da3b66"
+        },
+        "roomId": {
+          "type": "string",
+          "example": "33efeb1e16ea40a1ab59ac4870c493e0"
+        },
+        "message": {
+          "type": "string",
+          "example": "This is an encrypted message !"
+        },
+        "parentId": {
+          "type": "string",
+          "example": "44cbbb3577264cf8bf8f0bfffaaa1d51"
+        },
+        "URL": {
+          "type": "string",
+          "example": "https://www.w3schools.com/images/w3lynx_200.png"
+        },
+        "tagIds": {
+          "type": "array",
+          "example": [
+            "e2eeb6d5bd3b45cf858d04d630da3b66",
+            "28dcc46ffe144376ab7dd9c606c92d63"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2022-02-26T16:37:48.244Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2022-02-27T52:40:45.232Z"
+        }
+      },
+      "required": [
+        "type",
+        "userId",
+        "roomId"
+      ]
+    }
+  }
+}
